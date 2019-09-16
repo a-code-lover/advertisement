@@ -52,3 +52,13 @@ tail -f valid_check.INFO
 vim 目录插件
 
 grep -n 显示行号 **
+
+windows使用字符集gbk，ubuntu默认字符集utf-8。
+ubuntu中文编码设置https://blog.csdn.net/zjc156m/article/details/9095297
+locale
+
+glob
+
+sed命令
+
+apt yum命令详解

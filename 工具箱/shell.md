@@ -79,3 +79,11 @@ wc -l << EOF
 set PATH=%PATH%;D:\Program Files\
 使用setx设置为永久环境变量,适用于bat中：
 setx PATH "%PATH%;D:\Program Files\"
+
+### 文本处理
+
+sed命令
+
+替换：sed -i /s/old/new/ data.txt
+
+cat tac head tail echo grep 

@@ -134,3 +134,12 @@ s     包含子进程
 `+`     位于后台的进程组；
 
 ### top/vmstat
+
+### ssh
+
+ssh -p 27611 root@176.122.153.179
+ssh-keygen
+ssh-copy-id -i id_rsa.pub root@176.122.153.179 公钥会添加到authorized_keys最后
+
+ssh-keygen -b 4096 -t rsa -C root@192.168.237.201
+命令执行完成之后，在当前目录会生成id_rsa和id_rsa.pub两个key文件。参数b指定key的长度，本例中指定的长度为4096。参数t指定加密算法，本例中使用的RSA加密算法。参数C可是邮件地址或域名等，会被添加到key的尾部，以示区分。
