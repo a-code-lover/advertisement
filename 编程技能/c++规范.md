@@ -18,3 +18,5 @@ shared_ptr<parent> sp = make_shared<child>();
 8.关键字final有两个用途。第一，它阻止了从类继承；第二，阻止一个虚函数的重载。
 
 9.main函数不能放在namespace中，否则报错undefined reference to main
+
+10.`#pragma once`是一个非标准但是被广泛支持的前置处理符号，可以避免文件重复引入。`#include`防范。

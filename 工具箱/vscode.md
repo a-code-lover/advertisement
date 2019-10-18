@@ -11,7 +11,13 @@
 + [配置c++](https：//blog.csdn.net/qq_32126633/article/details/78838554)
 + [snippets](https://www.jianshu.com/p/1f1132df1def)
 
-## 2.shortcut(C-k, C-s)
+## 2.配置
+
+### 2.1 markdown preview enhanced
+
+软件自带的快捷键会覆盖插件的功能，所以要在keyboard shortcut中删除系统自带的快捷键C-k v和C-S v。
+
+## 3.shortcut(C-k, C-s)
 
 ### (1)editor
 
@@ -76,7 +82,9 @@
 + C-win-w: toggle tab visibility
 + A-pageup/down: scroll
 
-### (4)plugin  
+### (4) workspace
+
++ hjkl : 目录上下（层级）指针移动
 
 #### settting sync
 
@@ -91,7 +99,9 @@
 + f12: declaration
 + A-f12: peak definition
 
-## 3.编译环境
+## 4.插件
+
+## 5.编译环境
 
 Mind： the folder .vscode must be put together with src files.
 
@@ -109,7 +119,19 @@ Mind： the folder .vscode must be put together with src files.
 ## 选择
 
 ctrl+L:选择一行
+alt+鼠标左键点击：多光标输入
+alt+鼠标左键选择：多行选择
+shift+alt+鼠标左键拖动：列选择
 
 ### 离线安装插件依赖
 
 To use the "offline" .vsix (that doesn't download OS-based dependencies on extension activation), download the .vsix that matches your OS and run the "Install from VSIX" command in VS Code.
+
+## 其他
+
+### 替换tab为空格
+
+1. Press CTRL + H
+2. Click the .* button to search using regular expressions.
+3. To search for tabs enter [\t] in Find box.
+4. Enter spaces in Replace box and perform your replace.

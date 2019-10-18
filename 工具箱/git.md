@@ -5,7 +5,9 @@ toc:
   ordered: false
 ---
 
-# 基础
+# 版本管理
+
+## git
 
 Git 自带一个**git config**的工具来帮助设置控制 Git 外观和行为的配置变量。 这些变量存储在三个不同的位置：
 
@@ -34,11 +36,11 @@ git checkout -- test.md 撤销对文件的修改
 
 git diff --check 检查多余空格
 
-### git commit回退
+### (1) git commit回退
 
 git log
 git reflog
-git reset --soft HAEAD^（回退到commit的前一个版本）
+git reset --soft HAEAD ^（回退到commit的前一个版本）
 git reset --hard HEAD~2（撤销commit和add到前两个版本）
 git commit ammend（修改注释）
 git reset 旧标志
@@ -48,27 +50,25 @@ git checkout 版本
 + `--mixed`：只撤销commit和add，不删除工作空间的修改代码
 + `--hard`：撤销commit和add，并删除工作空间的修改代码
 
-### git切换https和ssh协议
+### (2) git remote
 
 git remote -v
 git remote set-url --delete https://xxx.git
 git remote set-url --add git@github.com:XXX.git
 fatal:已经commit的无法修改，必须回退后修改
 
-### git remote
-
-git remote / git remote -v
-git remote add <shortname> <url>
-git remote rm <shortname>
-git remote rename <oldname> <newname>
-git push <shortname> <branchname> 自动merge跟踪,先pull后merge
-git pull 自动跟踪
-git fetch <remotename> 手动merge
+`git remote / git remote -v`
+`git remote add <shortname> <url>`
+`git remote rm <shortname>`
+`git remote rename <oldname> <newname>`
+`git push <shortname> <branchname> 自动merge跟踪,先pull后merge`
+`git pull 自动跟踪`
+`git fetch <remotename> 手动merge`
 
 origin是你克隆远程仓库的默认名字。
 master是git init默认生成的分支名，和其他分支是一样的。
 
-### tag
+### (3) tag
 
 git tag -a v1.2 -m "new edition"
 git tag -d v1.2
@@ -78,7 +78,7 @@ git checkout -b <newbranch> v1.2
 git push origin v1.2
 git push origin --tags
 
-### branch
+### (4) branch
 
 HEAD指向当前分支的指针，用星号标志。
 git log --oneline --decorate(显示head) --graph --all
@@ -104,17 +104,19 @@ git branch -vv 查看
 删除远程分支：
 git push origin --delete serverfix
         
-### 协议
+### (5) 协议
 
 本地协议：使用共享文件系统。
 https：可用性，http/s被广泛使用，一般企业防火墙都会运行这些端口的数据通过。
 ssh：安全，所有传输都需要授权和加密，不能匿名访问，一般公司网络是唯一用到这个。
 git：快，不需要任何授权。
 
-### 贡献维护
+### (6) 贡献维护
 
 1.git diff --check 检查可能的空白错误。
 2.分多次小的提交，避免提交一次巨大的提交。
 3.优质的提交信息。
 
-<!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
+### (7) 常见错误
+
++ 

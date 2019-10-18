@@ -19,7 +19,7 @@ namespace NB {
   class A;
 
   class B {
-    A* val;   
+    A* val;
   }
 }
 ```
@@ -38,3 +38,8 @@ namespace NB {
   }  
 }  
 ```
+
+## 命名总结
+
+### 一般通用命名
+

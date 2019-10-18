@@ -62,3 +62,5 @@ glob
 sed命令
 
 apt yum命令详解
+
+修改系统变量

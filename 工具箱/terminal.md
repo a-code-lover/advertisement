@@ -11,7 +11,7 @@ jobs & ctrl+z fg bg kill %num
 
 mkdir -p date/pipeline/test 循环创建目录
 rm -r !(filename1 | filename2)：删除个别文件外的其他所有文件
-ls -s 按大小排序 -t 按时间排序 -r 反向
+ls -s 按大小排序 -t 按时间排序 -r 反向 -d 仅显示目录 -R 递归列出子目录
 
 wc -l：统计行数 -m：统计字符数
 
@@ -21,6 +21,10 @@ grep name *
 grep file\ name * 查找空格需要反斜杠转义
 
 date +%s 查看时间戳
+
+rm mv -i -r
+
+`alt+.` 粘贴最后参数
 
 ### du
 
@@ -100,7 +104,7 @@ popd用于删除目录栈中的记录；如果popd命令不加任何参数，则
 
 二.切换
 
-`cd` 
+`cd`
 `cd -`:切到上一次目录
 
 ### terminal跳转
@@ -111,6 +115,8 @@ ctrl + a 移动光标至的字符头
 ctrl + e 移动光标至的字符尾 
 Ctrl + u 删除当前光标前面的文字
 ctrl + l 清屏
+
+屏幕滚动：shift+pageup/pagedown
 
 ### 前后台切换
 
@@ -143,3 +149,53 @@ ssh-copy-id -i id_rsa.pub root@176.122.153.179 公钥会添加到authorized_keys
 
 ssh-keygen -b 4096 -t rsa -C root@192.168.237.201
 命令执行完成之后，在当前目录会生成id_rsa和id_rsa.pub两个key文件。参数b指定key的长度，本例中指定的长度为4096。参数t指定加密算法，本例中使用的RSA加密算法。参数C可是邮件地址或域名等，会被添加到key的尾部，以示区分。
+
+## Ubuntu bash
+
++ C-S-t 新建标签
++ C-S-w 关闭标签
+
+## tmux多终端
+
+[tmux详细教程](http://louiszhai.github.io/2017/09/30/tmux/)
+<http://blog.kompaz.win/2017/03/08/Tmux%20%E9%85%8D%E7%BD%AE%E4%BD%BF%E7%94%A8/>
+<https://blog.csdn.net/williamyuyuyu/article/details/79283374>
+<https://blog.csdn.net/gatieme/article/details/49301037>
+[customize status bar](https://hackernoon.com/customizing-tmux-b3d2a5050207)
+
+滚屏： C-b [ 然后就可以使用鼠标或者箭头
+兼容很多vim操作
+
+### session
+
+`tmux new -s demo`
+`tmux detach`
+`tmux a -t demo`
+`tmux ls`
+`tmux kill-session -t demo`
+`tmux kill-server`
+
+### 常用
+
+更新配置文件，命令行模式执行：source-file .tmux.conf
+滚屏： C-b [ 然后就可以使用鼠标或者箭头
+
+帮助文档：`prefix-?`，可使用`/`查找
+断开session：`prefix-d`
+命令行模式：`prefix-:`
+复制模式：`prefix-[`
+
+窗口命令：c,&，p,n,w（列表）,f（查找）
+面板命令：“,%，x,z(最大化),！(新窗口打开)
+
+窗口变为面板：`join-pane -s demo:1.0`(session:window.pane)
+
+列出信息缓存区：`prefix-~`
+列出粘贴缓存区：`list-buffers`
+
+### 复制模式
+
+1. 输入 `+[ 进入复制模式
+2. 按下 空格键 开始复制，移动光标选择复制区域
+3. 按下 回车键 复制选中文本并退出复制模式
+4. 按下 `+] 粘贴文本

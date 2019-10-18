@@ -14,7 +14,7 @@ for (int i = 0; i < x.size(); ++i)
 
 类型检查：
 
-+ ASSERT_EQ 
++ ASSERT_EQ
 + ASSERT_NE
 + ASSERT_TRUE
 + ASSERT_FALSE
