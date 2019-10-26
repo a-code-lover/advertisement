@@ -184,3 +184,8 @@ R       递归刷新根结点
 ：set 查看所有与系统默认不同的环境变量
 ：set variable?  显示指定环境变量的当前值
 ：set runtimepath？ 显示script搜索路径
+
+## 命令高亮补全
+
+[自带补全](https://sweetdum.wordpress.com/2011/08/05/vim%E5%B0%8F%E6%8A%80%E5%B7%A74/)
+[语法高亮](https://blog.csdn.net/G_BrightBoy/article/details/14229139)

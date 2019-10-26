@@ -43,3 +43,4 @@ namespace NB {
 
 ### 一般通用命名
 
+lhs, rhs：左边，右边

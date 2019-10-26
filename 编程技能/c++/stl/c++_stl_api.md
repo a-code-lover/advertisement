@@ -43,6 +43,24 @@
 
 ## algorithm
 
++ std::copy(InputIt first, InputIt last, Outputit dest_first);
+
+```c++
+std::string s("hello");
+std::transform(s.begin(), s.end(), s.begin(),
+               [](unsigned char c) -> unsigned char { return std::toupper(c); });
+
+std::copy(ssp.begin(), ssp.end(), ostream_iterator<string>(cout, "\n"));
+
+std::string mirror_ends(const std::string& in)
+{
+  return std::string(in.begin(),
+                     std::mismatch(in.begin(), in.end(), in.rbegin()).first); // 返回第一个不相等的pair
+}
+
+std::lexicographical_compare(v1.begin(), v1.end(), v2.begin(), v2.end()); // 按照字典序，v1是否小于v2
+```
+
 ### 堆操作
 
 > algorithm只修改内容，不增加或删除空间
@@ -62,7 +80,7 @@
 [基本使用](https://zhuanlan.zhihu.com/p/44435521)
 
 ```c++
-#include <sstream>
+#include <sstreami>
   stringstream ss;
   string str;
   ss.clear();
@@ -73,4 +91,3 @@
 ```
 
 ## 正则表达式库
-

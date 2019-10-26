@@ -1,3 +1,5 @@
+## 函数指针
+
 ### 普通函数指针
 
 c语言函数指针的定义形式：`返回类型 (*函数指针名称)(参数类型,参数类型,参数类型，…);`  
@@ -89,7 +91,7 @@ public:
     }
 };
 
-int main() {
+int main()https://www.geeksforgeeks.org/passing-reference-to-a-pointer-in-c/ {
     A a;
     (a.*a.p1)(); //打印A，这个语法太过分了！！！！
 
@@ -109,3 +111,7 @@ int main() {
 ```
 
 参考：<http://www.runoob.com/w3cnote/cpp-func-pointer.html>
+
+## 指针的引用
+
+[pass a reference to a pointer](https://www.geeksforgeeks.org/passing-reference-to-a-pointer-in-c/)

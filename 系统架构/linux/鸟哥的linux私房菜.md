@@ -151,3 +151,137 @@ set-unset alias-unalias
 `!66` 执行history中66号命令
 
 ### 数据流重定向
+
+## 开机管理boot loader
+
+开机流程：
+
+1. 加载bios的硬件信息并进行自我测试，并根据设定取得第一个可开机设置；
+2. 读取和执行第一个开机装置内MBR（主引导记录）的boot loader(一般是grub2)；
+3. 依据boot loader的设定加载kernal，kernal会开始侦测硬件和加载驱动程序；
+4. 在硬件驱动成功后，kernal会主动启动systemd程序，并以default.target流程开机；
+
+### boot loader
+
+BIOS：传统bios或者uefi bios;
+[MBR](http://c.biancheng.net/view/1015.html)：传统MBR或者新式GPT，代表磁盘最前面可安装boot loader的区块；注意Windows的loader不能加载linux的loader。所以一般先安装Windows，再安装linux，这样最后是linux的loader覆盖了，还能再调出Windows的。当然如果不小心先装了linux再装了Windows，那么最后要手动再安装grub，保证MBR中安装的是linuxde loader。
+
+BIOS和CMOS：BIOS是一段程序，这段程序需要读取的数据存在一个ram上，这个ram就是CMOS。
+
+![grub2.png](./img/grub2.png)
+
+boot loader读取到核心文件后，解压到主存执行，然后核心接管BIOS的工作。linux核心会以自己的功能重新侦测一次硬件，而不一定使用BIOS侦测到的硬件信息。核心一般放在/boot目录下，取名为`/boot/vmlinuz`。linux核心通过动态加载核心模块（类似驱动程序），核心模块放在`/lib/modules`目录内。`/lib`和`/`必须在同一分区，开机过程中核心必须挂载根目录，才能读取核心模块。
+
+![开机流程](./img/开机流程.png)
+
+systemd开机流程大约是：
+
+1. local-fs。target + swap.target：这两个target主要是挂载`/etc/fstab`里面所规范的文件系统和相关的swap空间；
+2. sysinit.target：主要是侦测硬件，加载所需要的核心模块等；
+3. basic.target：加载主要的外围硬件驱动与防火墙相关的加载；
+4. multi-user.target底下其他一般系统或网络服务加载；
+5. 图形界面；
+
+核心模块：`/etc/modules-load.d/*.conf`，`/etc/modprobe.d/*.conf`
+核心参数：`/etc/sysctl.conf`和`/etc/sysctl.d/*.conf`
+
+### 核心相关命令
+
+depmod, modprobe, lsmod, modinfo, rmmod, insmod,
+
+## 其他
+
+网络设定：nmcli(network manager client)，hostnamectl
+时间设定：timedatectl
+语言设定：localctl
+防火墙设定：firewall-cmd
+硬件解析：dmidecode
+硬件侦测指令：gdisk，dmesg, vmstat, lspci, lsusb, iostat
+动态链接库解析：ldd
+
+rp-pppoe-3.11-5.e17.x86_64.rpm
+软件名-版本-打包数.支持硬件平台.后缀名
+
+`/var/lib/rpm`：rpm安装软件后，会将软件相关信息写入该目录，下次安装或查询都要读该目录；
+`rpm -ivh ***.rpm`：-i install, -v 查看安装信息， -h 进度； -U 更新；
+
+基本上rpm指令只剩下查询和校验功能，安装使用yum。
+rpm查询：
+
++ -q：查询后面接的软件是否安装；
++ -qa：查询所有安装的软甲；
++ -qi：查询该软件的详细信息；
++ -ql：查询该软件的所有文件和目录；
++ -qc：查询该软件的配置文件；
++ -qd：查询该软件的文档说明；
++ -qR：查询该软件依赖软件的包含文件；
+
++ -qp[icdlR]：查看某个rpm文件的信息，而不是安装软件信息；
+
+yum查询：`yum [list|info|search|provides]`
+安装升级移除：`yum [install | update | remove]`
+查看软件库：`yum repolist all`
+删除所有下载过的软件库数据：`yum clean all`
+
+x server | x client | windows manager
+
+centos 7网卡命名：
+规则1：
+
+对于板载设备命名合并固件或 BIOS 提供的索引号，如果来自固件或 BIOS 的信息可读就命名，比如eno1，这种命名是比较常见的，否则使用规则2。
+
+规则2：
+
+命名合并固件或 BIOS 提供的 PCI-E 热插拔口索引号，比如 ens1，如果信息可读就使用，否则使用规则3。
+
+规则3：
+
+命名合并硬件接口的物理位置，比如 enp2s0，可用就命名，失败直接到方案5。
+
+规则4：
+
+命名合并接口的 MAC 地址，比如 enx78e7d1ea46da，默认不使用，除非用户选择使用此方案。
+
+规则5：
+
+使用传统的方案，如果所有的方案都失败，使用类似 eth0 这样的样式。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
